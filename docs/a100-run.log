@@ -1,0 +1,108 @@
+# Output of MLG_A100.ipynb on Google Colab, NVIDIA A100-SXM4-80GB, 18 Oct 2026.
+# Copied verbatim from the notebook cells (awakening, feeding, evolution: 58 min).
+
+substrate: embedded FalkorDBLite | FalkorDB answers
+
+[awake] compute device found: cuda. I will not trust its name; I will measure it.
+[memory] I can hold 72.0 GiB (MEASURED).
+[discovery] bandwidth falls 1.4x past ~28.7 MiB of working set. Something small and fast lives below that line. I bisected 4 times to find it.
+[bandwidth] peak 2227 GB/s, far memory 1691 GB/s.
+[arithmetic] fp32:   19.14 TFLOPS, error 1.1e-07, 0.055 TFLOPS/W
+[arithmetic] tf32:  125.89 TFLOPS, error 2.9e-04, 0.317 TFLOPS/W
+[arithmetic] bf16:  258.15 TFLOPS, error 2.9e-03, 0.650 TFLOPS/W
+[arithmetic] fp16:  248.94 TFLOPS, error 3.6e-04, OVERFLOWS above 65504 (valid only inside that envelope), 0.627 TFLOPS/W
+[metabolism] resting at 113 W, 44 C.
+
+BODY body:cuda0
+  cache_cliff                            28.7 MiB  [INFERRED, 6 proofs]
+  compute_capability                          8.0  [REPORTED, 1 proofs]
+  dram_bandwidth                        1691 GB/s  [MEASURED, 1 proofs]
+  format_bf16                        258.2 TFLOPS  [MEASURED, 8 proofs]
+  format_fp16                        248.9 TFLOPS  [MEASURED, 8 proofs]
+  format_fp32                        19.14 TFLOPS  [MEASURED, 8 proofs]
+  format_tf32                        125.9 TFLOPS  [MEASURED, 8 proofs]
+  idle_power                              113.4 W  [MEASURED, 1 proofs]
+  multiprocessors                             108  [REPORTED, 1 proofs]
+  name                      NVIDIA A100-SXM4-80GB  [REPORTED, 1 proofs]
+  peak_bandwidth                        2227 GB/s  [MEASURED, 1 proofs]
+  reported_memory                       8.509e+10  [REPORTED, 1 proofs]
+  self_model_efficiency                0.35 ratio  [ASSUMED]
+  temperature                                44 C  [MEASURED, 1 proofs]
+  usable_memory                          72.0 GiB  [MEASURED, 1 proofs]
+
+working set    16.00 MiB ->   2226.7 GB/s
+working set    22.62 MiB ->   2771.1 GB/s
+working set    26.91 MiB ->   2601.7 GB/s
+working set    28.09 MiB ->   2339.9 GB/s
+working set    29.34 MiB ->   2003.8 GB/s
+working set    32.00 MiB ->   1618.2 GB/s
+
+257.3 MiB of training text · 65,596 dev bytes · Q root sealed: True · 26 evaluation lines removed
+
+generation 0 in NVIDIA A100-SXM4-80GB:
+  + g0 acc22b d192 L4 E4k1 fp32: dev 2.188 bpb,   5.41M params, 2769 steps, 13057 J
+    COMMIT brain:acc22bd46732@cuda0: Q_LANGUAGE 0.7620 (frozen Q root 1.904 bpb)
+  x g0 dc8a97 d512 L16 E4k4 tf32: killed before running, needs 132.1 GiB
+  + g0 a31b0c d1024 L4 E2k1 fp32: dev 3.373 bpb,  84.70M params, 464 steps, 29128 J
+  + g0 99c44e d64 L2 E8k4 bf16: dev 3.007 bpb,   0.58M params, 2698 steps, 5070 J
+  + g0 087965 d768 L3 E8k2 fp32: dev 2.586 bpb, 120.75M params, 610 steps, 27913 J
+  + g0 70f1ca d1536 L8 E1k1 fp16: dev 2.528 bpb, 227.33M params, 1635 steps, 29630 J
+  x g0 0e62a2 d1024 L8 E2k1 bf16: killed before running, needs 78.9 GiB
+  + g0 6c7c3f d64 L3 E16k4 fp32: dev 3.424 bpb,   0.92M params, 1027 steps, 6244 J
+generation 1 in NVIDIA A100-SXM4-80GB:
+  + g1 dfdf4c d128 L3 E8k2 fp32: dev 2.245 bpb,   3.41M params, 2104 steps, 8526 J
+  + g1 037174 d1536 L8 E1k1 tf32 <clone>: dev 2.186 bpb, 227.33M params, 1025 steps, 29894 J, carries 150 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7592 vs 0.7620)
+  + g1 61bfbd d192 L4 E4k1 bf16 <clone>: dev 2.011 bpb,   5.41M params, 2458 steps, 6198 J, carries 150 s of ancestral training
+    COMMIT brain:61bfbd72df33@cuda0: Q_LANGUAGE 0.7893 (frozen Q root 1.686 bpb)
+  + g1 4b75d0 d1536 L3 E4k1 fp32: dev 3.438 bpb, 255.63M params, 286 steps, 29374 J
+  + g1 0550d9 d192 L4 E4k1 fp32: dev 2.091 bpb,   4.23M params, 2529 steps, 18921 J
+  + g1 76df26 d192 L4 E1k1 fp16 <prune>: dev 2.151 bpb,   1.87M params, 7452 steps, 6510 J, carries 150 s of ancestral training
+  + g1 824208 d256 L4 E4k1 fp32: dev 2.032 bpb,   9.58M params, 2744 steps, 17905 J
+  + g1 df1d32 d192 L16 E2k1 fp32: dev 2.759 bpb,  11.91M params, 1035 steps, 17175 J
+generation 2 in NVIDIA A100-SXM4-80GB:
+  + g2 1aed16 d192 L4 E4k1 bf16 <clone>: dev 2.179 bpb,   5.41M params, 2515 steps, 6136 J, gap +0.81, carries 225 s of ancestral training
+  + g2 1cf979 d1024 L8 E1k1 tf32: dev 3.105 bpb, 101.22M params, 1058 steps, 29818 J
+  + g2 0bc1bf d192 L4 E4k1 bf16 <clone>: dev 1.927 bpb,   5.41M params, 2317 steps, 9705 J, gap +0.23, carries 225 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7812 vs 0.7893)
+  + g2 ed713e d192 L4 E4k1 bf16 <clone>: dev 1.939 bpb,   5.41M params, 2496 steps, 6076 J, carries 225 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7895 vs 0.7893)
+  + g2 429ef3 d192 L3 E8k1 fp32: dev 2.353 bpb,   5.86M params, 2285 steps, 10136 J
+  + g2 cc189d d192 L4 E4k2 bf16 <reshape>: dev 2.102 bpb,   5.41M params, 2294 steps, 6455 J, gap +0.65, carries 225 s of ancestral training
+  + g2 a38237 d128 L4 E8k2 bf16: dev 2.474 bpb,   4.51M params, 1516 steps, 5049 J
+  + g2 273507 d256 L4 E4k1 fp32: dev 2.095 bpb,   9.54M params, 2831 steps, 11904 J
+generation 3 in NVIDIA A100-SXM4-80GB:
+  + g3 085853 d192 L4 E4k1 bf16 <clone>: dev 1.948 bpb,   5.41M params, 2392 steps, 9895 J, gap +0.32, carries 300 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7744 vs 0.7893)
+  + g3 602b5f d192 L4 E4k1 fp32: dev 2.103 bpb,   4.23M params, 1742 steps, 24058 J
+  + g3 d7f321 d192 L4 E4k1 tf32 <clone>: dev 2.478 bpb,   5.41M params, 2679 steps, 13361 J, gap +1.33, carries 300 s of ancestral training
+  + g3 b3119e d192 L4 E1k1 fp16 <prune>: dev 1.830 bpb,   1.87M params, 6451 steps, 25637 J, carries 300 s of ancestral training
+    COMMIT brain:b3119e52eba3@cuda0: Q_LANGUAGE 0.7916 (frozen Q root 1.667 bpb)
+  + g3 a5c34a d192 L4 E4k1 bf16 <reshape>: dev 2.133 bpb,   5.46M params, 2329 steps, 10069 J, carries 300 s of ancestral training
+  + g3 0d448c d192 L4 E4k1 bf16 <reshape>: dev 1.927 bpb,   5.46M params, 2213 steps, 13963 J, carries 300 s of ancestral training
+  + g3 313a86 d192 L4 E4k1 bf16: dev 2.216 bpb,   5.41M params, 2298 steps, 9462 J
+  + g3 f3719a d192 L6 E4k1 bf16 <grow>: dev 2.512 bpb,   8.07M params, 1617 steps, 9555 J, gap +1.26, carries 300 s of ancestral training
+generation 4 in NVIDIA A100-SXM4-80GB:
+  + g4 b6b712 d192 L2 E4k1 bf16 <prune>: dev 1.474 bpb,   2.81M params, 4269 steps, 14002 J, carries 375 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7907 vs 0.7916)
+  + g4 07208a d192 L4 E8k1 bf16 <grow>: dev 1.930 bpb,  10.13M params, 1466 steps, 6464 J, gap +0.37, carries 300 s of ancestral training
+  + g4 1978fc d192 L4 E8k1 bf16 <grow>: dev 2.267 bpb,  10.13M params, 1481 steps, 6407 J, gap +1.01, carries 300 s of ancestral training
+  + g4 f96e15 d192 L3 E1k1 fp16 <prune>: dev 1.779 bpb,   1.43M params, 8287 steps, 25172 J, carries 375 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7921 vs 0.7916)
+  + g4 2d6cd3 d192 L4 E1k1 fp16: dev 2.396 bpb,   1.58M params, 6678 steps, 25349 J
+  + g4 a5510b d192 L4 E4k4 fp32: dev 2.162 bpb,   5.41M params, 2331 steps, 23158 J
+  + g4 348d78 d192 L4 E2k1 fp16 <grow>: dev 1.869 bpb,   3.05M params, 3146 steps, 17253 J, carries 375 s of ancestral training
+  + g4 88f367 d192 L4 E8k1 bf16: dev 2.570 bpb,  10.18M params, 1244 steps, 15273 J
+generation 5 in NVIDIA A100-SXM4-80GB:
+  + g5 de2d56 d192 L3 E4k1 bf16 <grow>: dev 2.406 bpb,   4.13M params, 3038 steps, 14149 J, gap +1.33, carries 450 s of ancestral training
+  + g5 fde61f d192 L2 E8k1 bf16 <grow>: dev 1.533 bpb,   5.17M params, 2664 steps, 11265 J, carries 450 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7827 vs 0.7916)
+  + g5 34ee7c d192 L2 E4k1 bf16 <reshape>: dev 1.540 bpb,   2.81M params, 4216 steps, 14516 J, carries 450 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7797 vs 0.7916)
+  + g5 8d2152 d192 L2 E4k1 bf16 <clone>: dev 1.571 bpb,   2.81M params, 3490 steps, 19836 J, carries 450 s of ancestral training
+    rollback: dev improved, frozen Q root did not (0.7784 vs 0.7916)
+  + g5 5f1cbb d192 L4 E4k1 fp32: dev 2.231 bpb,   4.21M params, 2865 steps, 7481 J
+  + g5 525de7 d192 L2 E1k1 bf16: dev 2.060 bpb,   0.98M params, 13192 steps, 15798 J, gap +0.26
+  + g5 d9e1b2 d192 L6 E1k1 bf16: dev 1.995 bpb,   2.76M params, 5934 steps, 6590 J
+  + g5 e7b471 d192 L4 E8k1 bf16: dev 2.573 bpb,  10.13M params, 1522 steps, 5571 J
+[discovery] 15 brains more than twice the champion's size did worse. The wall is the data (2.8M params is enough for this corpus), not the body.

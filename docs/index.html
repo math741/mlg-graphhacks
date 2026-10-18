@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MLG Living Mind</title>
+<meta name="description" content="The MLG's FalkorDB graph replayed live: body measured, brains born, killed, crowned and grown by inheritance.">
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<style>
+  body { margin:0; padding:16px; background:#000207; color:#e9ecef; overflow:hidden;
+    font-family:'IBM Plex Sans',system-ui,sans-serif; }
+  .note { position:fixed; right:34px; bottom:70px; font:12px 'IBM Plex Mono',monospace; color:#8d99ae;
+    text-align:right; line-height:1.7; }
+  .note a { color:#4cc9f0; text-decoration:none; }
+  @media (max-width:640px) { .note { display:none; } }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<div id="mind23053a62">
+<style>
+#mind23053a62{position:relative;width:100%;height:calc(100vh - 32px);background:#03050b;border-radius:14px;overflow:hidden;
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;color:#e9ecef;user-select:none}
+#mind23053a62 canvas{display:block;width:100%;height:calc(100vh - 32px);cursor:grab}
+#mind23053a62 .mind-top{position:absolute;left:18px;top:14px;pointer-events:none}
+#mind23053a62 .mind-title{font-size:15px;font-weight:600;letter-spacing:.05em}
+#mind23053a62 .mind-sub{font-size:11px;color:#8d99ae;margin-top:3px}
+#mind23053a62 .mind-legend{position:absolute;left:18px;top:56px;font-size:10px;color:#8d99ae;display:flex;
+  flex-direction:column;gap:4px;pointer-events:none}
+#mind23053a62 .mind-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;
+  box-shadow:0 0 8px currentColor}
+#mind23053a62 .mind-hud{position:absolute;right:18px;top:12px;display:flex;gap:18px;pointer-events:none}
+#mind23053a62 .mind-hud div{display:flex;flex-direction:column;align-items:flex-end}
+#mind23053a62 .mind-hud b{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 14px currentColor}
+#mind23053a62 .mind-hud span{font-size:9px;color:#8d99ae;text-transform:uppercase;letter-spacing:.12em}
+#mind23053a62 .mind-ticker{position:absolute;left:18px;bottom:54px;font:12px 'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  pointer-events:none;max-width:78%}
+#mind23053a62 .mind-line{animation:mindin .45s cubic-bezier(.2,.9,.3,1.3);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;text-shadow:0 0 10px currentColor;margin-top:3px}
+#mind23053a62 .mind-line:nth-child(2){opacity:.55}#mind23053a62 .mind-line:nth-child(3){opacity:.3}
+#mind23053a62 .mind-line:nth-child(4){opacity:.14}
+@keyframes mindin{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+#mind23053a62 .mind-bar{position:absolute;left:0;right:0;bottom:0;height:44px;display:flex;align-items:center;
+  gap:8px;padding:0 14px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+#mind23053a62 button{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#e9ecef;
+  border-radius:8px;padding:5px 11px;font:11px 'IBM Plex Mono',ui-monospace,monospace;cursor:pointer;
+  transition:all .15s}
+#mind23053a62 button:hover{background:rgba(255,255,255,.15);transform:translateY(-1px)}
+#mind23053a62 button.on{border-color:#ffd166;color:#ffd166;box-shadow:0 0 10px rgba(255,209,102,.35)}
+#mind23053a62 .mind-progress{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+#mind23053a62 .mind-progress div{height:100%;width:0;background:linear-gradient(90deg,#4cc9f0,#2ee6a6,#ffd166);
+  box-shadow:0 0 10px #2ee6a6;transition:width .2s linear}
+#mind23053a62 .mind-tip{position:absolute;display:none;max-width:280px;background:rgba(8,12,26,.92);
+  border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:9px 11px;font-size:11px;
+  line-height:1.55;pointer-events:none;backdrop-filter:blur(8px);word-break:break-all}
+#mind23053a62 .mind-tip span{color:#8d99ae}#mind23053a62 .mind-tip i{color:#ffb4c2;font-style:normal}
+#mind23053a62 .mind-tip hr{border:0;border-top:1px solid rgba(255,255,255,.12);margin:6px 0}
+#mind23053a62 button:focus-visible{outline:2px solid #4cc9f0;outline-offset:2px}
+#mind23053a62 .mind-live{display:none;margin-left:10px;padding:1px 7px;border:1px solid #ff4d6d;border-radius:6px;
+  color:#ff4d6d;font-size:10px;letter-spacing:.14em;vertical-align:2px;pointer-events:auto;
+  animation:mindpulse 1.4s ease-in-out infinite;text-shadow:0 0 8px #ff4d6d}
+@keyframes mindpulse{50%{opacity:.35}}
+@media (max-width:640px){#mind23053a62 .mind-legend{display:none}
+  #mind23053a62 .mind-hud{left:18px;right:auto;top:52px;gap:12px}#mind23053a62 .mind-hud b{font-size:16px}
+  #mind23053a62 .mind-bar{gap:5px;padding:0 8px}#mind23053a62 button{padding:4px 7px}
+  #mind23053a62 .mind-speed[data-s="2"],#mind23053a62 .mind-fit{display:none}
+  #mind23053a62 .mind-ticker{font-size:10px;max-width:92%}}
+</style>
+<canvas></canvas>
+<div class="mind-top"><div class="mind-title">MLG ZERO-1T &Sigma;&Omega; &middot; living mind<span class="mind-live">&#9679; LIVE</span></div>
+<div class="mind-sub">replayed from FalkorDB &middot; 93 objects &middot; 255 relations &middot; embedded FalkorDBLite</div></div>
+<div class="mind-legend"><div><i style="color:#ff6b35;background:#ff6b35"></i>body</div><div><i style="color:#ffb627;background:#ffb627"></i>trait of the body</div><div><i style="color:#5c7aff;background:#5c7aff"></i>measurement</div><div><i style="color:#4cc9f0;background:#4cc9f0"></i>brain genome</div><div><i style="color:#2ee6a6;background:#2ee6a6"></i>trained brain</div><div><i style="color:#ff4d6d;background:#ff4d6d"></i>furnace decision</div><div><i style="color:#f72585;background:#f72585"></i>frozen ruler</div><div><i style="color:#ffd166;background:#ffd166"></i>inheritance, champion</div></div>
+<div class="mind-hud"></div><div class="mind-ticker"></div><div class="mind-tip"></div>
+<div class="mind-bar"><button class="mind-play">&#10074;&#10074; pause</button>
+<button class="mind-speed on" data-s="1">1x</button><button class="mind-speed" data-s="2">2x</button>
+<button class="mind-speed" data-s="4">4x</button><div class="mind-progress"><div></div></div>
+<button class="mind-all">show all</button><button class="mind-fit">fit</button>
+<button class="mind-replay">&#8634; replay</button></div>
+</div>
+<script>
+/* The living mind: replays the substrate graph from FalkorDB in the order
+ * the MLG created it. Physics by d3-force, everything drawn on one canvas.
+ * Called by viz.py once d3 is loaded. With LIVE_URL it keeps polling that
+ * URL and animates every object the MLG writes, as it writes it. */
+function mlgMind(MIND_ID, MIND_DATA, MIND_SECONDS, MIND_HEIGHT, LIVE_URL) {
+  const root = document.getElementById(MIND_ID);
+  const cv = root.querySelector("canvas");
+  const ctx = cv.getContext("2d");
+  const tip = root.querySelector(".mind-tip");
+  const ticker = root.querySelector(".mind-ticker");
+  const hud = root.querySelector(".mind-hud");
+  const bar = root.querySelector(".mind-progress > div");
+  const H = MIND_HEIGHT || Math.max(480, window.innerHeight - 32);
+  root.style.height = H + "px";
+  let W = root.clientWidth, dpr = window.devicePixelRatio || 1;
+  function resize() {
+    W = root.clientWidth;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.width = W + "px"; cv.style.height = H + "px";
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const COL = {Body: "#ff6b35", Trait: "#ffb627", Experiment: "#8d99ae", Measurement: "#5c7aff",
+    Genome: "#4cc9f0", Brain: "#2ee6a6", Evaluation: "#b388ff", Decision: "#ff4d6d",
+    Suite: "#f72585", Dataset: "#adb5bd"};
+  const SIZE = {Body: 17, Dataset: 11, Suite: 9, Trait: 6.5, Experiment: 5, Measurement: 2.4,
+    Genome: 5.5, Brain: 8.5, Evaluation: 3.8, Decision: 5.5};
+  const DEAD = "#4a5060", GOLD = "#ffd166";
+
+  // glow sprites, one per colour
+  const sprites = {};
+  function sprite(c) {
+    if (sprites[c]) return sprites[c];
+    const s = document.createElement("canvas"); s.width = s.height = 96;
+    const g = s.getContext("2d"), gr = g.createRadialGradient(48, 48, 0, 48, 48, 48);
+    gr.addColorStop(0, c + "ff"); gr.addColorStop(0.18, c + "aa"); gr.addColorStop(0.45, c + "33");
+    gr.addColorStop(1, c + "00");
+    g.fillStyle = gr; g.fillRect(0, 0, 96, 96);
+    return (sprites[c] = s);
+  }
+
+  // ---- data ----------------------------------------------------------
+  const K = ["id", "type", "level", "label", "created", "reason", "stage", "dev_bpb", "value",
+    "unit", "body", "pareto", "bpb", "params", "inherited"];
+  const all = [], byId = new Map(), adj = new Map(), allEdges = [], edgeKeys = new Set();
+  // new objects join the end of the timeline; known ones get their latest properties
+  function addNodes(rows) {
+    for (const r of rows) {
+      const old = byId.get(r[0]);
+      if (old) { K.forEach((k, j) => { if (r[j] !== null && r[j] !== undefined) old[k] = r[j]; }); continue; }
+      const n = {}; K.forEach((k, j) => (n[k] = r[j])); n.order = all.length;
+      all.push(n); byId.set(n.id, n); adj.set(n.id, []);
+    }
+  }
+  // returns true when a relation appeared between two objects already on screen
+  function addEdges(rows) {
+    let fresh = false;
+    for (const [a, r, b] of rows) {
+      const key = a + "|" + r + "|" + b;
+      if (edgeKeys.has(key) || !byId.has(a) || !byId.has(b)) continue;
+      edgeKeys.add(key);
+      const e = {a, r, b, phase: Math.random()};
+      allEdges.push(e); adj.get(a).push(e); adj.get(b).push(e);
+      if (byId.get(a).shown && byId.get(b).shown) {
+        e.on = true; e.born = clock;
+        links.push({source: a, target: b, r, phase: e.phase, born: clock});
+        fresh = true;
+      }
+    }
+    return fresh;
+  }
+
+  const nodes = [], links = [], effects = [], sparks = [], dust = [];
+  for (let i = 0; i < 70; i++) dust.push({x: Math.random(), y: Math.random(),
+    v: 0.002 + Math.random() * 0.006, r: Math.random() * 1.3 + 0.3, p: Math.random() * 6});
+  const stats = {Trait: 0, Genome: 0, Brain: 0, killed: 0, commit: 0, rollback: 0};
+  const champions = new Map(); // body -> brain node
+  const bodies = [];
+
+  const sim = d3.forceSimulation(nodes)
+    .force("charge", d3.forceManyBody().strength((n) => -14 * (SIZE[n.type] || 4)).distanceMax(320))
+    .force("link", d3.forceLink(links).id((n) => n.id)
+      .distance((l) => l.target.type === "Measurement" || l.source.type === "Measurement" ? 16
+        : l.r === "LIVES_IN" || l.r === "TRAINED_ON" ? 90 : l.r === "HAS_TRAIT" ? 42 : 34)
+      .strength((l) => l.r === "TRAINED_ON" || l.r === "FED_BY" ? 0.05 : 0.35))
+    .force("collide", d3.forceCollide((n) => (SIZE[n.type] || 4) + 2.5))
+    .force("x", d3.forceX((n) => n.anchor ? n.anchor.x : 0).strength((n) => n.type === "Body" ? 0.12 : 0.012))
+    .force("y", d3.forceY(0).strength((n) => n.type === "Body" ? 0.12 : 0.012))
+    .alphaDecay(0.012).velocityDecay(0.32);
+  sim.stop();
+
+  // ---- replay --------------------------------------------------------
+  let cursor = 0, play = true, speed = 1, last = performance.now(), clock = 0, finished = false;
+  addNodes(MIND_DATA.nodes); addEdges(MIND_DATA.edges);
+  const initial = all.length;
+  const rate = Math.max(1, all.length) / Math.max(8, MIND_SECONDS); // nodes per second at 1x
+  let accum = 0;
+
+  function fmt(v, u) {
+    if (typeof v !== "number") return String(v);
+    if (u === "B") { const s = ["B", "KiB", "MiB", "GiB"]; let i = 0; while (v >= 1024 && i < 3) { v /= 1024; i++; } return v.toFixed(1) + " " + s[i]; }
+    return (Math.abs(v) >= 100 ? v.toFixed(0) : v.toPrecision(3)) + (u ? " " + u : "");
+  }
+  function say(text, color) {
+    const d = document.createElement("div");
+    d.className = "mind-line"; d.style.color = color; d.textContent = text;
+    ticker.prepend(d);
+    while (ticker.children.length > 4) ticker.lastChild.remove();
+  }
+  function narrate(n) {
+    const c = COL[n.type];
+    if (n.type === "Body") say(`body discovered: ${n.label} [${n.level}]`, c);
+    else if (n.type === "Trait") say(`trait ${n.label} = ${fmt(n.value, n.unit)} [${n.level}]`, c);
+    else if (n.type === "Genome") say(`genome ${n.id.slice(7, 13)} conceived` +
+      (n.inherited ? ` · inherits its parent's mind (${n.inherited})` : ""), n.inherited ? GOLD : c);
+    else if (n.type === "Suite") say(`ruler sealed: ${n.id.slice(6)}`, c);
+    else if (n.type === "Dataset") say(`food: ${n.id.slice(8)}`, c);
+    else if (n.type === "Decision") {
+      const v = n.label, col = v === "COMMIT" ? GOLD : v === "SEARCH_DEATH" ? "#8d99ae" : COL.Decision;
+      say(`${v} @ ${n.stage}: ${n.reason || ""}`, col);
+    }
+  }
+
+  function spawn(n) {
+    const sz = SIZE[n.type] || 4;
+    n.r = sz; n.born = clock; n.alpha = 1;
+    // appear next to something it is connected to
+    let near = null;
+    for (const e of adj.get(n.id)) {
+      const o = byId.get(e.a === n.id ? e.b : e.a);
+      if (o.shown) { near = o; break; }
+    }
+    if (n.type === "Body") {
+      n.anchor = {x: bodies.length === 0 ? 0 : 260 * bodies.length};
+      bodies.push(n);
+      if (bodies.length === 2) bodies[0].anchor.x = -150, bodies[1].anchor.x = 150;
+      n.x = n.anchor.x; n.y = (Math.random() - 0.5) * 40;
+    } else if (near) {
+      const a = Math.random() * Math.PI * 2;
+      n.x = near.x + Math.cos(a) * 18; n.y = near.y + Math.sin(a) * 18;
+      n.vx = Math.cos(a) * 2; n.vy = Math.sin(a) * 2;
+    } else {
+      n.x = (Math.random() - 0.5) * 120; n.y = (Math.random() - 0.5) * 120;
+    }
+    n.shown = true; nodes.push(n);
+    for (const e of adj.get(n.id)) {
+      const o = byId.get(e.a === n.id ? e.b : e.a);
+      if (o.shown && !e.on) {
+        e.on = true; e.born = clock;
+        links.push({source: e.a, target: e.b, r: e.r, phase: e.phase, born: clock});
+      }
+    }
+    if (n.type !== "Measurement" && n.type !== "Evaluation" && n.type !== "Experiment")
+      effects.push({kind: "ring", node: n, t0: clock, color: COL[n.type], dur: n.type === "Body" ? 1.8 : 0.9});
+    if (n.type in stats) stats[n.type]++;
+    if (n.type === "Decision") decide(n);
+    narrate(n);
+  }
+
+  function targets(d) {
+    return adj.get(d.id).filter((e) => e.a === d.id && (e.r === "KILLED" || e.r === "CHOSE"))
+      .map((e) => byId.get(e.b)).filter((x) => x.shown);
+  }
+  function decide(d) {
+    const v = d.label;
+    for (const t of targets(d)) {
+      if (v === "KILL" || v === "ROLLBACK") {
+        t.dead = true; t.deadAt = clock;
+        stats[v === "KILL" ? "killed" : "rollback"]++;
+        effects.push({kind: "shock", node: t, t0: clock, color: COL.Decision, dur: 1.1});
+      } else if (v === "COMMIT") {
+        const prev = champions.get(d.body);
+        if (prev) { prev.champion = false; prev.retired = true; }
+        champions.set(d.body, t);
+        t.champion = true; t.crownAt = clock; stats.commit++;
+        effects.push({kind: "burst", node: t, t0: clock, color: GOLD, dur: 1.6});
+        for (let i = 0; i < 26; i++) {
+          const a = Math.random() * Math.PI * 2, s = 40 + Math.random() * 110;
+          sparks.push({x: t.x, y: t.y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, t0: clock, life: 0.7 + Math.random() * 0.8});
+        }
+      }
+    }
+    if (v === "SEARCH_DEATH") effects.push({kind: "dim", t0: clock, dur: 1.4});
+  }
+
+  function step(dt) {
+    if (!play) return;
+    const backlog = all.length - cursor;
+    if (backlog <= 0) {
+      if (!finished) {
+        finished = true;
+        say(LIVE_URL ? "caught up. listening to FalkorDB for the next thought…"
+          : "the mind is complete. drag, zoom, hover.", "#e9ecef");
+      }
+      accum = 0;
+      return;
+    }
+    finished = false;
+    // history plays at the chosen pace; live arrivals catch up within a few seconds
+    const r = LIVE_URL && cursor >= initial ? Math.max(3, backlog / 2.5) : rate;
+    accum += dt * r * speed;
+    let added = false;
+    while (accum >= 1 && cursor < all.length) { spawn(all[cursor++]); accum -= 1; added = true; }
+    if (added) {
+      sim.nodes(nodes); sim.force("link").links(links);
+      sim.alpha(Math.max(sim.alpha(), 0.35));
+    }
+  }
+
+  if (LIVE_URL) {
+    const badge = root.querySelector(".mind-live");
+    if (badge) badge.style.display = "inline-block";
+    let busy = false;
+    setInterval(() => {
+      if (busy) return;
+      busy = true;
+      fetch(LIVE_URL, {cache: "no-store"}).then((r) => r.json()).then((d) => {
+        addNodes(d.nodes);
+        if (addEdges(d.edges)) { sim.force("link").links(links); sim.alpha(Math.max(sim.alpha(), 0.3)); }
+        if (badge) badge.title = "last update " + new Date().toLocaleTimeString();
+      }).catch(() => { if (badge) badge.title = "FalkorDB not reachable, retrying"; })
+        .finally(() => { busy = false; });
+    }, 2000);
+  }
+
+  // ---- camera --------------------------------------------------------
+  let cam = {x: 0, y: 0, k: 1}, auto = true, transform = d3.zoomIdentity;
+  function fit(dt) {
+    if (!auto || !nodes.length) return;
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    for (const n of nodes) { x0 = Math.min(x0, n.x); x1 = Math.max(x1, n.x); y0 = Math.min(y0, n.y); y1 = Math.max(y1, n.y); }
+    const k = Math.min(2.4, (W - 120) / Math.max(60, x1 - x0), (H - 170) / Math.max(60, y1 - y0));
+    const f = 1 - Math.exp(-dt * 2.2);
+    cam.k += (k - cam.k) * f; cam.x += ((x0 + x1) / 2 - cam.x) * f; cam.y += ((y0 + y1) / 2 - cam.y) * f;
+    transform = d3.zoomIdentity.translate(W / 2 - cam.x * cam.k, H / 2 + 20 - cam.y * cam.k).scale(cam.k);
+    d3.select(cv).property("__zoom", transform);
+  }
+
+  // ---- drawing -------------------------------------------------------
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#03050b"; ctx.fillRect(0, 0, W, H);
+    const vg = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, Math.max(W, H) * 0.75);
+    vg.addColorStop(0, "rgba(40,60,140,0.18)"); vg.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+    for (const p of dust) {
+      p.y -= p.v * 0.016; if (p.y < 0) p.y = 1;
+      ctx.globalAlpha = 0.25 + 0.25 * Math.sin(clock * 1.3 + p.p);
+      ctx.fillStyle = "#9fb4ff"; ctx.beginPath();
+      ctx.arc(p.x * W, p.y * H, p.r, 0, 6.283); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    ctx.save();
+    ctx.translate(transform.x, transform.y); ctx.scale(transform.k, transform.k);
+    const k = transform.k;
+
+    // edges and the particles that run along them
+    ctx.lineWidth = 0.7 / k;
+    for (const l of links) {
+      const s = l.source, t = l.target;
+      if (s.x === undefined || t.x === undefined) continue;
+      const grow = Math.min(1, (clock - l.born) / 0.5);
+      const dead = s.dead || t.dead, heir = l.r === "INHERITED_FROM";
+      ctx.globalAlpha = (heir ? 0.6 : dead ? 0.07 : 0.2) * grow;
+      ctx.strokeStyle = heir ? GOLD : dead ? DEAD : COL[s.type];
+      ctx.lineWidth = (heir ? 1.8 : 0.7) / k;
+      ctx.beginPath(); ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x + (t.x - s.x) * grow, s.y + (t.y - s.y) * grow); ctx.stroke();
+      if ((heir || !dead) && grow === 1 && s.type !== "Measurement" && t.type !== "Measurement") {
+        // inheritance flows from the parent brain (target) into the child genome (source)
+        const u = (clock * (heir ? 0.6 : 0.35) + l.phase) % 1, a = heir ? t : s, b = heir ? s : t;
+        const px = a.x + (b.x - a.x) * u, py = a.y + (b.y - a.y) * u, z = heir ? 8 : 5;
+        ctx.globalAlpha = 0.85 * Math.sin(u * Math.PI);
+        ctx.drawImage(sprite(heir ? GOLD : COL[s.type]), px - z, py - z, 2 * z, 2 * z);
+      }
+    }
+
+    // nodes
+    for (const n of nodes) {
+      const age = clock - n.born;
+      const pop = age < 0.6 ? easeBack(age / 0.6) : 1;
+      const breathe = 1 + 0.07 * Math.sin(clock * 2.2 + n.order);
+      const r = n.r * pop * breathe;
+      const fade = n.dead ? Math.max(0.28, 1 - (clock - n.deadAt) * 0.9) : 1;
+      const col = n.dead && clock - n.deadAt > 0.6 ? DEAD : n.champion ? GOLD : COL[n.type];
+      if (!n.dead || clock - n.deadAt < 0.6) {
+        ctx.globalAlpha = (n.type === "Measurement" ? 0.5 : 0.75) * fade;
+        const g = r * (n.champion ? 7 : n.type === "Body" ? 5 : 4.2);
+        ctx.drawImage(sprite(col), n.x - g, n.y - g, g * 2, g * 2);
+      }
+      ctx.globalAlpha = fade;
+      ctx.fillStyle = col; ctx.beginPath();
+      if (n.type === "Decision") {
+        ctx.moveTo(n.x, n.y - r); ctx.lineTo(n.x + r, n.y); ctx.lineTo(n.x, n.y + r); ctx.lineTo(n.x - r, n.y);
+        ctx.closePath();
+      } else if (n.type === "Body") {
+        for (let i = 0; i < 6; i++) {
+          const a = i * Math.PI / 3 + clock * 0.15;
+          ctx[i ? "lineTo" : "moveTo"](n.x + Math.cos(a) * r, n.y + Math.sin(a) * r);
+        }
+        ctx.closePath();
+      } else ctx.arc(n.x, n.y, r, 0, 6.283);
+      ctx.fill();
+      if (n.level === "REPORTED" || n.level === "ASSUMED" || n.level === "INFERRED") {
+        ctx.setLineDash(n.level === "INFERRED" ? [1.5 / k, 1.5 / k] : [3 / k, 2.5 / k]);
+        ctx.strokeStyle = "rgba(255,255,255,0.75)"; ctx.lineWidth = 0.8 / k;
+        ctx.beginPath(); ctx.arc(n.x, n.y, r + 2.5, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
+      }
+      if (n.champion) {
+        const ca = Math.min(1, (clock - n.crownAt) / 0.8);
+        ctx.strokeStyle = GOLD; ctx.lineWidth = 1.4 / k; ctx.globalAlpha = ca;
+        ctx.setLineDash([5 / k, 4 / k]); ctx.lineDashOffset = -clock * 18 / k;
+        ctx.beginPath(); ctx.arc(n.x, n.y, r + 7, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
+        for (let i = 0; i < 3; i++) {
+          const a = clock * 1.6 + i * 2.094;
+          ctx.drawImage(sprite(GOLD), n.x + Math.cos(a) * (r + 11) - 4, n.y + Math.sin(a) * (r + 11) - 4, 8, 8);
+        }
+      }
+      if (n.retired) {
+        ctx.globalAlpha = 0.6; ctx.strokeStyle = "#cfd8e3"; ctx.lineWidth = 0.8 / k;
+        ctx.beginPath(); ctx.arc(n.x, n.y, r + 5, 0, 6.283); ctx.stroke();
+      }
+    }
+
+    // effects
+    for (let i = effects.length - 1; i >= 0; i--) {
+      const e = effects[i], u = (clock - e.t0) / e.dur;
+      if (u >= 1) { effects.splice(i, 1); continue; }
+      if (e.kind === "dim") continue;
+      const n = e.node;
+      ctx.globalAlpha = (1 - u) * (e.kind === "ring" ? 0.8 : 1);
+      ctx.strokeStyle = e.color;
+      ctx.lineWidth = (e.kind === "ring" ? 1.4 : 2.6 * (1 - u) + 0.4) / k;
+      const R = n.r + (e.kind === "ring" ? 4 + 34 * easeOut(u) : e.kind === "shock" ? 6 + 70 * easeOut(u) : 8 + 120 * easeOut(u));
+      ctx.beginPath(); ctx.arc(n.x, n.y, R, 0, 6.283); ctx.stroke();
+      if (e.kind === "shock") {
+        ctx.globalAlpha = (1 - u) * 0.35; ctx.fillStyle = e.color;
+        ctx.beginPath(); ctx.arc(n.x, n.y, R * 0.6, 0, 6.283); ctx.fill();
+      }
+    }
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i], u = (clock - s.t0) / s.life;
+      if (u >= 1) { sparks.splice(i, 1); continue; }
+      const t = clock - s.t0;
+      const x = s.x + s.vx * t * (1 - u * 0.5), y = s.y + s.vy * t * (1 - u * 0.5) + 30 * t * t;
+      ctx.globalAlpha = 1 - u;
+      ctx.drawImage(sprite(GOLD), x - 4, y - 4, 8, 8);
+    }
+
+    // labels
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (const n of nodes) {
+      const show = n.type === "Body" || n.type === "Suite" || n.type === "Dataset" || n.champion
+        || n === hover || (n.type === "Trait" && k > 0.9) || (n.type === "Brain" && k > 1.3 && !n.dead);
+      if (!show) continue;
+      const fs = (n.type === "Body" ? 13 : n.champion ? 12 : 10) / k;
+      ctx.font = `${n.type === "Body" || n.champion ? 600 : 400} ${fs}px "IBM Plex Sans", system-ui, sans-serif`;
+      ctx.globalAlpha = Math.min(1, (clock - n.born) * 2) * (n.dead ? 0.45 : 0.92);
+      ctx.fillStyle = n.champion ? GOLD : "#e9ecef";
+      ctx.fillText(labelOf(n), n.x, n.y + n.r + 6 / k);
+    }
+    ctx.restore();
+
+    const dim = effects.find((e) => e.kind === "dim");
+    if (dim) {
+      ctx.globalAlpha = 0.35 * Math.sin(Math.PI * (clock - dim.t0) / dim.dur);
+      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function labelOf(n) {
+    if (n.type === "Body") return n.label;
+    if (n.type === "Trait") return `${n.label} ${fmt(n.value, n.unit)}`;
+    if (n.type === "Brain") return n.champion ? `CHAMPION ${n.dev_bpb ? n.dev_bpb.toFixed(3) + " bpb" : ""}` :
+      n.dev_bpb ? n.dev_bpb.toFixed(3) + " bpb" : n.id.slice(6, 12);
+    if (n.type === "Suite") return n.id.slice(6);
+    if (n.type === "Dataset") return n.id.slice(8);
+    return n.label;
+  }
+  const easeOut = (u) => 1 - Math.pow(1 - u, 3);
+  const easeBack = (u) => { const c = 1.9; return 1 + (c + 1) * Math.pow(u - 1, 3) + c * Math.pow(u - 1, 2); };
+
+  function drawHud() {
+    const alive = stats.Brain - stats.killed - stats.rollback;
+    hud.innerHTML = [
+      ["traits", stats.Trait, COL.Trait], ["genomes", stats.Genome, COL.Genome],
+      ["brains", stats.Brain, COL.Brain], ["killed", stats.killed + stats.rollback, COL.Decision],
+      ["committed", stats.commit, GOLD]]
+      .map(([k, v, c]) => `<div><b style="color:${c}">${v}</b><span>${k}</span></div>`).join("");
+    bar.style.width = (100 * cursor / Math.max(1, all.length)) + "%";
+  }
+
+  // ---- interaction ---------------------------------------------------
+  let hover = null;
+  function nodeAt(px, py) {
+    const [x, y] = transform.invert([px, py]);
+    let best = null, bd = Infinity;
+    for (const n of nodes) {
+      const d = Math.hypot(n.x - x, n.y - y);
+      if (d < Math.max(n.r + 4, 9 / transform.k) && d < bd) { best = n; bd = d; }
+    }
+    return best;
+  }
+  cv.addEventListener("mousemove", (ev) => {
+    const b = cv.getBoundingClientRect();
+    hover = nodeAt(ev.clientX - b.left, ev.clientY - b.top);
+    if (hover) {
+      const n = hover, rel = adj.get(n.id).filter((e) => e.on).slice(0, 6)
+        .map((e) => e.a === n.id ? `${e.r} → ${labelOf(byId.get(e.b))}` : `${labelOf(byId.get(e.a))} → ${e.r}`);
+      tip.innerHTML = `<b style="color:${COL[n.type]}">${n.type}</b> <span>${n.level || ""}</span><br>${n.id}` +
+        (n.reason ? `<br><i>${n.reason}</i>` : "") + (n.value !== null && n.value !== undefined && n.type !== "Decision" ? `<br>${fmt(n.value, n.unit)}` : "") +
+        (n.dev_bpb ? `<br>dev ${n.dev_bpb.toFixed(3)} bits/byte` : "") + (n.bpb ? `<br>${n.bpb.toFixed(3)} bits/byte` : "") +
+        (rel.length ? `<hr>${rel.join("<br>")}` : "");
+      tip.style.display = "block";
+      tip.style.left = Math.min(W - 280, ev.clientX - b.left + 14) + "px";
+      tip.style.top = Math.min(H - 150, ev.clientY - b.top + 14) + "px";
+      cv.style.cursor = "pointer";
+    } else { tip.style.display = "none"; cv.style.cursor = "grab"; }
+  });
+  cv.addEventListener("mouseleave", () => { hover = null; tip.style.display = "none"; });
+  const sel = d3.select(cv);
+  // the drag subject lives in screen space; the node it holds lives in the world
+  sel.call(d3.drag().container(cv)
+    .subject((ev) => { const n = nodeAt(ev.x, ev.y); return n ? {n, x: ev.x, y: ev.y} : null; })
+    .on("start", (ev) => { sim.alphaTarget(0.25); ev.subject.n.fx = ev.subject.n.x; ev.subject.n.fy = ev.subject.n.y; })
+    .on("drag", (ev) => { const [x, y] = transform.invert([ev.x, ev.y]); ev.subject.n.fx = x; ev.subject.n.fy = y; })
+    .on("end", (ev) => { sim.alphaTarget(0); ev.subject.n.fx = null; ev.subject.n.fy = null; }));
+  sel.call(d3.zoom().scaleExtent([0.15, 8])
+    .on("zoom", (ev) => { if (ev.sourceEvent) auto = false; transform = ev.transform; }));
+
+  const btn = (s) => root.querySelector(s);
+  btn(".mind-play").onclick = function () { play = !play; this.textContent = play ? "❚❚ pause" : "▶ play"; };
+  root.querySelectorAll(".mind-speed").forEach((b) => b.onclick = function () {
+    speed = +this.dataset.s;
+    root.querySelectorAll(".mind-speed").forEach((x) => x.classList.toggle("on", x === this));
+  });
+  btn(".mind-fit").onclick = () => { auto = true; };
+  btn(".mind-all").onclick = () => { while (cursor < all.length) spawn(all[cursor++]); sim.nodes(nodes); sim.force("link").links(links); sim.alpha(0.6); };
+  btn(".mind-replay").onclick = () => {
+    for (const n of all) { n.shown = false; n.dead = n.champion = n.retired = false; delete n.fx; delete n.fy; }
+    for (const e of allEdges) e.on = false;
+    nodes.length = links.length = effects.length = sparks.length = bodies.length = 0;
+    champions.clear(); Object.keys(stats).forEach((s) => (stats[s] = 0));
+    cursor = 0; accum = 0; finished = false; auto = true; ticker.innerHTML = ""; play = true;
+    btn(".mind-play").textContent = "❚❚ pause"; sim.nodes(nodes); sim.force("link").links(links);
+  };
+
+  // reduced motion: show the mind at once, no replay (live arrivals still appear)
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    btn(".mind-all").onclick();
+    if (!LIVE_URL) { play = false; btn(".mind-play").textContent = "▶ play"; }
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now; clock += dt;
+    step(dt);
+    if (sim.alpha() > 0.002 || sim.alphaTarget() > 0) sim.tick();
+    fit(dt); draw(); drawHud();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+(function () {
+  var data = {"nodes": [["body:cpu0", "Body", "REPORTED", "x86_64", 1792292236.66346, null, null, null, null, null, null, null, null, null, null], ["exp:body:cpu0:existence", "Experiment", "OBSERVED", "existence", 1792292236.67808, null, null, null, null, null, null, null, null, null, null], ["m:body:cpu0:0001", "Measurement", "REPORTED", "m:body:cpu0:0001", 1792292236.69454, null, null, null, "x86_64", "", null, null, null, null, null], ["trait:body:cpu0:name", "Trait", "REPORTED", "name", 1792292236.72609, null, null, null, "x86_64", "", null, null, null, null, null], ["m:body:cpu0:0002", "Measurement", "REPORTED", "m:body:cpu0:0002", 1792292236.74203, null, null, null, 12, "", null, null, null, null, null], ["trait:body:cpu0:logical_cpus", "Trait", "REPORTED", "logical_cpus", 1792292236.74471, null, null, null, 12, "", null, null, null, null, null], ["exp:body:cpu0:memory", "Experiment", "OBSERVED", "memory", 1792292236.76314, null, null, null, null, null, null, null, null, null, null], ["m:body:cpu0:0003", "Measurement", "REPORTED", "m:body:cpu0:0003", 1792292236.76931, null, null, null, 3280920576, "B", null, null, null, null, null], ["trait:body:cpu0:usable_memory", "Trait", "REPORTED", "usable_memory", 1792292236.79505, null, null, null, 1640460288, "B", null, null, null, null, null], ["exp:body:cpu0:bandwidth", "Experiment", "OBSERVED", "bandwidth", 1792292236.80337, null, null, null, null, null, null, null, null, null, null], ["m:body:cpu0:0004", "Measurement", "MEASURED", "m:body:cpu0:0004", 1792292236.87418, null, null, null, 22.0380695953412, "GB/s", null, null, null, null, null], ["m:body:cpu0:0005", "Measurement", "MEASURED", "m:body:cpu0:0005", 1792292236.93352, null, null, null, 25.1891404851652, "GB/s", null, null, null, null, null], ["m:body:cpu0:0006", "Measurement", "MEASURED", "m:body:cpu0:0006", 1792292236.97205, null, null, null, 9.08406960762842, "GB/s", null, null, null, null, null], ["m:body:cpu0:0007", "Measurement", "MEASURED", "m:body:cpu0:0007", 1792292237.02702, null, null, null, 26.0489080311825, "GB/s", null, null, null, null, null], ["m:body:cpu0:0008", "Measurement", "MEASURED", "m:body:cpu0:0008", 1792292237.08664, null, null, null, 26.4677720532958, "GB/s", null, null, null, null, null], ["m:body:cpu0:0009", "Measurement", "MEASURED", "m:body:cpu0:0009", 1792292237.12227, null, null, null, 20.8895871229421, "GB/s", null, null, null, null, null], ["m:body:cpu0:0010", "Measurement", "MEASURED", "m:body:cpu0:0010", 1792292237.18559, null, null, null, 18.77774535089, "GB/s", null, null, null, null, null], ["m:body:cpu0:0011", "Measurement", "MEASURED", "m:body:cpu0:0011", 1792292237.27027, null, null, null, 4.63401464375544, "GB/s", null, null, null, null, null], ["m:body:cpu0:0012", "Measurement", "MEASURED", "m:body:cpu0:0012", 1792292237.34766, null, null, null, 4.76954512505973, "GB/s", null, null, null, null, null], ["trait:body:cpu0:peak_bandwidth", "Trait", "MEASURED", "peak_bandwidth", 1792292237.35751, null, null, null, 26.4677720532958, "GB/s", null, null, null, null, null], ["trait:body:cpu0:dram_bandwidth", "Trait", "MEASURED", "dram_bandwidth", 1792292237.36685, null, null, null, 4.76954512505973, "GB/s", null, null, null, null, null], ["m:body:cpu0:0013", "Measurement", "MEASURED", "m:body:cpu0:0013", 1792292237.42139, null, null, null, 4.40919644435001, "GB/s", null, null, null, null, null], ["m:body:cpu0:0014", "Measurement", "MEASURED", "m:body:cpu0:0014", 1792292237.45798, null, null, null, 7.72924555902278, "GB/s", null, null, null, null, null], ["trait:body:cpu0:cache_cliff", "Trait", "INFERRED", "cache_cliff", 1792292237.46654, null, null, null, 9147840, "B", null, null, null, null, null], ["exp:body:cpu0:arithmetic", "Experiment", "OBSERVED", "arithmetic", 1792292237.49138, null, null, null, null, null, null, null, null, null, null], ["m:body:cpu0:0015", "Measurement", "MEASURED", "m:body:cpu0:0015", 1792292237.61053, null, null, null, 2.91194002730107e-07, "", null, null, null, null, null], ["m:body:cpu0:0016", "Measurement", "MEASURED", "m:body:cpu0:0016", 1792292237.62096, null, null, null, true, "", null, null, null, null, null], ["m:body:cpu0:0017", "Measurement", "MEASURED", "m:body:cpu0:0017", 1792292237.64719, null, null, null, 0.0354718729613765, "TFLOPS", null, null, null, null, null], ["m:body:cpu0:0018", "Measurement", "MEASURED", "m:body:cpu0:0018", 1792292237.67747, null, null, null, 0.0734053752219106, "TFLOPS", null, null, null, null, null], ["trait:body:cpu0:format_fp32", "Trait", "MEASURED", "format_fp32", 1792292237.68954, null, null, null, 0.0734053752219106, "TFLOPS", null, null, null, null, null], ["m:body:cpu0:0019", "Measurement", "MEASURED", "m:body:cpu0:0019", 1792292237.75978, null, null, null, 0.00288525554502817, "", null, null, null, null, null], ["m:body:cpu0:0020", "Measurement", "MEASURED", "m:body:cpu0:0020", 1792292237.76893, null, null, null, true, "", null, null, null, null, null], ["m:body:cpu0:0021", "Measurement", "MEASURED", "m:body:cpu0:0021", 1792292237.80253, null, null, null, 0.0012516590965282, "TFLOPS", null, null, null, null, null], ["m:body:cpu0:0022", "Measurement", "MEASURED", "m:body:cpu0:0022", 1792292237.91321, null, null, null, 0.00132576735591511, "TFLOPS", null, null, null, null, null], ["trait:body:cpu0:format_bf16", "Trait", "MEASURED", "format_bf16", 1792292237.92034, null, null, null, 0.00132576735591511, "TFLOPS", null, null, null, null, null], ["exp:body:cpu0:metabolism", "Experiment", "OBSERVED", "metabolism", 1792292237.92517, null, null, null, null, null, null, null, null, null, null], ["m:body:cpu0:0023", "Measurement", "OBSERVED", "m:body:cpu0:0023", 1792292237.92687, null, null, null, "absent", "", null, null, null, null, null], ["trait:body:cpu0:energy_sensor", "Trait", "UNKNOWN", "energy_sensor", 1792292237.93494, null, null, null, "NOT MEASURED", "", null, null, null, null, null], ["trait:body:cpu0:self_model_efficiency", "Trait", "MEASURED", "self_model_efficiency", 1792292237.93923, null, null, null, 0.187559060096549, "ratio", null, null, null, null, null], ["suite:dev", "Suite", "KNOWN", "suite:dev", 1792292238.1555, null, null, null, null, null, null, null, null, null, null], ["suite:qroot-language", "Suite", "KNOWN", "suite:qroot-language", 1792292238.15674, null, null, null, null, null, null, null, null, null, null], ["dataset:mlg-corpus", "Dataset", "KNOWN", "dataset:mlg-corpus", 1792292238.15733, null, null, null, null, null, null, null, null, null, null], ["genome:411b627d97da", "Genome", "EXPERIMENTAL", "genome:411b627d97da", 1792292238.17133, null, null, null, null, null, null, null, null, 53632, null], ["brain:411b627d97da@cpu0", "Brain", "TESTED", "brain:411b627d97da@cpu0", 1792292260.12649, null, null, 3.49228859839339, null, null, null, true, null, 53632, null], ["eval:brain:411b627d97da@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:411b627d97da@cpu0:dev", 1792292261.06978, null, null, null, null, null, null, null, 3.49228859839339, null, null], ["eval:brain:411b627d97da@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:411b627d97da@cpu0:qroot-language", 1792292261.12391, null, null, null, null, null, null, null, 3.39482976703151, null, null], ["decision:body:cpu0:0001", "Decision", "OBSERVED", "COMMIT", 1792292261.13231, "first brain to survive the furnace", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:0eb2220b863d", "Genome", "EXPERIMENTAL", "genome:0eb2220b863d", 1792292261.16306, null, null, null, null, null, null, null, null, 185472, null], ["brain:0eb2220b863d@cpu0", "Brain", "TESTED", "brain:0eb2220b863d@cpu0", 1792292276.99242, null, null, null, null, null, null, null, null, 185472, null], ["eval:brain:0eb2220b863d@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:0eb2220b863d@cpu0:dev", 1792292279.85373, null, null, null, null, null, null, null, 4.68062169272012, null, null], ["decision:body:cpu0:0002", "Decision", "OBSERVED", "KILL", 1792292279.86816, "cannot tell language from shuffled bytes", "ATTACK", null, null, null, "body:cpu0", null, null, null, null], ["genome:9c17b6656e67", "Genome", "EXPERIMENTAL", "genome:9c17b6656e67", 1792292279.88247, null, null, null, null, null, null, null, null, 152704, null], ["brain:9c17b6656e67@cpu0", "Brain", "TESTED", "brain:9c17b6656e67@cpu0", 1792292295.10707, null, null, 4.11055645734424, null, null, null, null, null, 152704, null], ["eval:brain:9c17b6656e67@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:9c17b6656e67@cpu0:dev", 1792292297.33817, null, null, null, null, null, null, null, 4.11055645734424, null, null], ["genome:0bab847e1ca1", "Genome", "EXPERIMENTAL", "genome:0bab847e1ca1", 1792292297.49154, null, null, null, null, null, null, null, null, 53632, "reshape"], ["brain:0bab847e1ca1@cpu0", "Brain", "TESTED", "brain:0bab847e1ca1@cpu0", 1792292313.34613, null, null, 3.29531279793603, null, null, null, true, null, 53632, "reshape"], ["eval:brain:0bab847e1ca1@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:0bab847e1ca1@cpu0:dev", 1792292314.31433, null, null, null, null, null, null, null, 3.29531279793603, null, null], ["eval:brain:0bab847e1ca1@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:0bab847e1ca1@cpu0:qroot-language", 1792292314.36315, null, null, null, null, null, null, null, 3.16388924432195, null, null], ["decision:body:cpu0:0003", "Decision", "OBSERVED", "COMMIT", 1792292314.38619, "Q_LANGUAGE 0.5756 -> 0.6045 on the frozen Q root", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:2db76d12c015", "Genome", "EXPERIMENTAL", "genome:2db76d12c015", 1792292314.42118, null, null, null, null, null, null, null, null, 55680, "reshape"], ["brain:2db76d12c015@cpu0", "Brain", "TESTED", "brain:2db76d12c015@cpu0", 1792292329.58806, null, null, 3.36243254744769, null, null, null, null, null, 55680, "reshape"], ["eval:brain:2db76d12c015@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:2db76d12c015@cpu0:dev", 1792292330.47057, null, null, null, null, null, null, null, 3.36243254744769, null, null], ["genome:6e43c84f430d", "Genome", "EXPERIMENTAL", "genome:6e43c84f430d", 1792292330.5433, null, null, null, null, null, null, null, null, 70144, "grow"], ["brain:6e43c84f430d@cpu0", "Brain", "TESTED", "brain:6e43c84f430d@cpu0", 1792292346.41571, null, null, 3.36605471255608, null, null, null, null, null, 70144, "grow"], ["eval:brain:6e43c84f430d@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:6e43c84f430d@cpu0:dev", 1792292347.66919, null, null, null, null, null, null, null, 3.36605471255608, null, null], ["genome:81f79bf7181f", "Genome", "EXPERIMENTAL", "genome:81f79bf7181f", 1792292347.74759, null, null, null, null, null, null, null, null, 55680, "reshape"], ["brain:81f79bf7181f@cpu0", "Brain", "TESTED", "brain:81f79bf7181f@cpu0", 1792292362.88016, null, null, 3.17895714097866, null, null, null, true, null, 55680, "reshape"], ["eval:brain:81f79bf7181f@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:81f79bf7181f@cpu0:dev", 1792292363.67952, null, null, null, null, null, null, null, 3.17895714097866, null, null], ["eval:brain:81f79bf7181f@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:81f79bf7181f@cpu0:qroot-language", 1792292363.74879, null, null, null, null, null, null, null, 3.0341309513411, null, null], ["decision:body:cpu0:0004", "Decision", "OBSERVED", "COMMIT", 1792292363.75994, "Q_LANGUAGE 0.6045 -> 0.6207 on the frozen Q root", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:8b409e66a225", "Genome", "EXPERIMENTAL", "genome:8b409e66a225", 1792292363.79437, null, null, null, null, null, null, null, null, 119680, "grow"], ["brain:8b409e66a225@cpu0", "Brain", "TESTED", "brain:8b409e66a225@cpu0", 1792292379.75142, null, null, 3.17830797926587, null, null, null, true, null, 119680, "grow"], ["eval:brain:8b409e66a225@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:8b409e66a225@cpu0:dev", 1792292381.54821, null, null, null, null, null, null, null, 3.17830797926587, null, null], ["eval:brain:8b409e66a225@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:8b409e66a225@cpu0:qroot-language", 1792292381.64466, null, null, null, null, null, null, null, 3.0230283964288, null, null], ["decision:body:cpu0:0005", "Decision", "OBSERVED", "ROLLBACK", 1792292381.66063, "better on dev but Q root gain +0.0014 is within tolerance 0.002", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:813896674016", "Genome", "EXPERIMENTAL", "genome:813896674016", 1792292381.68419, null, null, null, null, null, null, null, null, 88704, "grow"], ["brain:813896674016@cpu0", "Brain", "TESTED", "brain:813896674016@cpu0", 1792292396.8702, null, null, 3.30629857760346, null, null, null, null, null, 88704, "grow"], ["eval:brain:813896674016@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:813896674016@cpu0:dev", 1792292398.48668, null, null, null, null, null, null, null, 3.30629857760346, null, null], ["genome:bd876fbfcf49", "Genome", "EXPERIMENTAL", "genome:bd876fbfcf49", 1792292398.56579, null, null, null, null, null, null, null, null, 169216, "grow"], ["brain:bd876fbfcf49@cpu0", "Brain", "TESTED", "brain:bd876fbfcf49@cpu0", 1792292414.36817, null, null, 3.12330228016783, null, null, null, true, null, 169216, "grow"], ["eval:brain:bd876fbfcf49@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:bd876fbfcf49@cpu0:dev", 1792292417.30491, null, null, null, null, null, null, null, 3.12330228016783, null, null], ["eval:brain:bd876fbfcf49@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:bd876fbfcf49@cpu0:qroot-language", 1792292417.47831, null, null, null, null, null, null, null, 2.93686220347626, null, null], ["decision:body:cpu0:0006", "Decision", "OBSERVED", "COMMIT", 1792292417.49431, "Q_LANGUAGE 0.6207 -> 0.6329 on the frozen Q root", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:17d7cadad611", "Genome", "EXPERIMENTAL", "genome:17d7cadad611", 1792292417.5136, null, null, null, null, null, null, null, null, 119680, "reshape"], ["brain:17d7cadad611@cpu0", "Brain", "TESTED", "brain:17d7cadad611@cpu0", 1792292432.75471, null, null, 3.10050062059465, null, null, null, true, null, 119680, "reshape"], ["eval:brain:17d7cadad611@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:17d7cadad611@cpu0:dev", 1792292435.56062, null, null, null, null, null, null, null, 3.10050062059465, null, null], ["eval:brain:17d7cadad611@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:17d7cadad611@cpu0:qroot-language", 1792292435.69414, null, null, null, null, null, null, null, 2.91535775910809, null, null], ["decision:body:cpu0:0007", "Decision", "OBSERVED", "COMMIT", 1792292435.70459, "Q_LANGUAGE 0.6329 -> 0.6356 on the frozen Q root", "COMPARE", null, null, null, "body:cpu0", null, null, null, null], ["genome:2355e32f68e7", "Genome", "EXPERIMENTAL", "genome:2355e32f68e7", 1792292435.73029, null, null, null, null, null, null, null, null, 103040, "grow"], ["brain:2355e32f68e7@cpu0", "Brain", "TESTED", "brain:2355e32f68e7@cpu0", 1792292451.27402, null, null, 3.04095268585541, null, null, null, true, null, 103040, "grow"], ["eval:brain:2355e32f68e7@cpu0:dev", "Evaluation", "MEASURED", "eval:brain:2355e32f68e7@cpu0:dev", 1792315594.10697, null, null, null, null, null, null, null, 3.04095268585541, null, null], ["eval:brain:2355e32f68e7@cpu0:qroot-language", "Evaluation", "MEASURED", "eval:brain:2355e32f68e7@cpu0:qroot-language", 1792315596.22394, null, null, null, null, null, null, null, 2.8239879703058, null, null], ["decision:body:cpu0:0008", "Decision", "OBSERVED", "COMMIT", 1792315596.28136, "Q_LANGUAGE 0.6356 -> 0.6470 on the frozen Q root", "COMPARE", null, null, null, "body:cpu0", null, null, null, null]], "edges": [["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:name"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:logical_cpus"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:usable_memory"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:peak_bandwidth"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:dram_bandwidth"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:cache_cliff"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:format_fp32"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:format_bf16"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:energy_sensor"], ["body:cpu0", "HAS_TRAIT", "trait:body:cpu0:self_model_efficiency"], ["m:body:cpu0:0001", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0001", "PART_OF", "exp:body:cpu0:existence"], ["trait:body:cpu0:name", "PROVEN_BY", "m:body:cpu0:0001"], ["m:body:cpu0:0002", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0002", "PART_OF", "exp:body:cpu0:existence"], ["trait:body:cpu0:logical_cpus", "PROVEN_BY", "m:body:cpu0:0002"], ["m:body:cpu0:0003", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0003", "PART_OF", "exp:body:cpu0:memory"], ["trait:body:cpu0:usable_memory", "PROVEN_BY", "m:body:cpu0:0003"], ["m:body:cpu0:0004", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0004", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0005", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0005", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0006", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0006", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0007", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0007", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0008", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0008", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0009", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0009", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0010", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0010", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0011", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0011", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0012", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0012", "PART_OF", "exp:body:cpu0:bandwidth"], ["trait:body:cpu0:peak_bandwidth", "PROVEN_BY", "m:body:cpu0:0008"], ["trait:body:cpu0:dram_bandwidth", "PROVEN_BY", "m:body:cpu0:0012"], ["m:body:cpu0:0013", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0013", "PART_OF", "exp:body:cpu0:bandwidth"], ["m:body:cpu0:0014", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0014", "PART_OF", "exp:body:cpu0:bandwidth"], ["trait:body:cpu0:cache_cliff", "PROVEN_BY", "m:body:cpu0:0010"], ["trait:body:cpu0:cache_cliff", "PROVEN_BY", "m:body:cpu0:0011"], ["trait:body:cpu0:cache_cliff", "PROVEN_BY", "m:body:cpu0:0013"], ["trait:body:cpu0:cache_cliff", "PROVEN_BY", "m:body:cpu0:0014"], ["m:body:cpu0:0015", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0015", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0016", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0016", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0017", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0017", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0018", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0018", "PART_OF", "exp:body:cpu0:arithmetic"], ["trait:body:cpu0:format_fp32", "PROVEN_BY", "m:body:cpu0:0015"], ["trait:body:cpu0:format_fp32", "PROVEN_BY", "m:body:cpu0:0016"], ["trait:body:cpu0:format_fp32", "PROVEN_BY", "m:body:cpu0:0017"], ["trait:body:cpu0:format_fp32", "PROVEN_BY", "m:body:cpu0:0018"], ["m:body:cpu0:0019", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0019", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0020", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0020", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0021", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0021", "PART_OF", "exp:body:cpu0:arithmetic"], ["m:body:cpu0:0022", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0022", "PART_OF", "exp:body:cpu0:arithmetic"], ["trait:body:cpu0:format_bf16", "PROVEN_BY", "m:body:cpu0:0019"], ["trait:body:cpu0:format_bf16", "PROVEN_BY", "m:body:cpu0:0020"], ["trait:body:cpu0:format_bf16", "PROVEN_BY", "m:body:cpu0:0021"], ["trait:body:cpu0:format_bf16", "PROVEN_BY", "m:body:cpu0:0022"], ["m:body:cpu0:0023", "MEASURED_ON", "body:cpu0"], ["m:body:cpu0:0023", "PART_OF", "exp:body:cpu0:metabolism"], ["trait:body:cpu0:energy_sensor", "PROVEN_BY", "m:body:cpu0:0023"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:411b627d97da@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:0eb2220b863d@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:9c17b6656e67@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:0bab847e1ca1@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:2db76d12c015@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:6e43c84f430d@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:81f79bf7181f@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:8b409e66a225@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:813896674016@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:bd876fbfcf49@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:17d7cadad611@cpu0"], ["trait:body:cpu0:self_model_efficiency", "PROVEN_BY", "brain:2355e32f68e7@cpu0"], ["genome:411b627d97da", "EXPRESSES", "brain:411b627d97da@cpu0"], ["genome:411b627d97da", "PARENT_OF", "genome:0bab847e1ca1"], ["genome:411b627d97da", "PARENT_OF", "genome:2db76d12c015"], ["genome:411b627d97da", "PARENT_OF", "genome:6e43c84f430d"], ["brain:411b627d97da@cpu0", "LIVES_IN", "body:cpu0"], ["brain:411b627d97da@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:411b627d97da@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:411b627d97da@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:411b627d97da@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:411b627d97da@cpu0", "EVALUATED_BY", "eval:brain:411b627d97da@cpu0:dev"], ["brain:411b627d97da@cpu0", "EVALUATED_BY", "eval:brain:411b627d97da@cpu0:qroot-language"], ["eval:brain:411b627d97da@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:411b627d97da@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0001", "CHOSE", "brain:411b627d97da@cpu0"], ["decision:body:cpu0:0001", "JUSTIFIED_BY", "eval:brain:411b627d97da@cpu0:dev"], ["decision:body:cpu0:0001", "JUSTIFIED_BY", "eval:brain:411b627d97da@cpu0:qroot-language"], ["genome:0eb2220b863d", "EXPRESSES", "brain:0eb2220b863d@cpu0"], ["brain:0eb2220b863d@cpu0", "LIVES_IN", "body:cpu0"], ["brain:0eb2220b863d@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:0eb2220b863d@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:0eb2220b863d@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:0eb2220b863d@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:0eb2220b863d@cpu0", "EVALUATED_BY", "eval:brain:0eb2220b863d@cpu0:dev"], ["eval:brain:0eb2220b863d@cpu0:dev", "ON_SUITE", "suite:dev"], ["decision:body:cpu0:0002", "KILLED", "brain:0eb2220b863d@cpu0"], ["decision:body:cpu0:0002", "JUSTIFIED_BY", "eval:brain:0eb2220b863d@cpu0:dev"], ["genome:9c17b6656e67", "EXPRESSES", "brain:9c17b6656e67@cpu0"], ["brain:9c17b6656e67@cpu0", "LIVES_IN", "body:cpu0"], ["brain:9c17b6656e67@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:9c17b6656e67@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:9c17b6656e67@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:9c17b6656e67@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:9c17b6656e67@cpu0", "EVALUATED_BY", "eval:brain:9c17b6656e67@cpu0:dev"], ["eval:brain:9c17b6656e67@cpu0:dev", "ON_SUITE", "suite:dev"], ["genome:0bab847e1ca1", "INHERITED_FROM", "brain:411b627d97da@cpu0"], ["genome:0bab847e1ca1", "EXPRESSES", "brain:0bab847e1ca1@cpu0"], ["genome:0bab847e1ca1", "PARENT_OF", "genome:81f79bf7181f"], ["genome:0bab847e1ca1", "PARENT_OF", "genome:8b409e66a225"], ["genome:0bab847e1ca1", "PARENT_OF", "genome:2355e32f68e7"], ["brain:0bab847e1ca1@cpu0", "LIVES_IN", "body:cpu0"], ["brain:0bab847e1ca1@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:0bab847e1ca1@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:0bab847e1ca1@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:0bab847e1ca1@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:0bab847e1ca1@cpu0", "SUPERSEDES", "brain:411b627d97da@cpu0"], ["brain:0bab847e1ca1@cpu0", "CHALLENGED", "brain:411b627d97da@cpu0"], ["brain:0bab847e1ca1@cpu0", "EVALUATED_BY", "eval:brain:0bab847e1ca1@cpu0:dev"], ["brain:0bab847e1ca1@cpu0", "EVALUATED_BY", "eval:brain:0bab847e1ca1@cpu0:qroot-language"], ["eval:brain:0bab847e1ca1@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:0bab847e1ca1@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0003", "JUSTIFIED_BY", "eval:brain:411b627d97da@cpu0:qroot-language"], ["decision:body:cpu0:0003", "CHOSE", "brain:0bab847e1ca1@cpu0"], ["decision:body:cpu0:0003", "JUSTIFIED_BY", "eval:brain:0bab847e1ca1@cpu0:dev"], ["decision:body:cpu0:0003", "JUSTIFIED_BY", "eval:brain:0bab847e1ca1@cpu0:qroot-language"], ["genome:2db76d12c015", "INHERITED_FROM", "brain:411b627d97da@cpu0"], ["genome:2db76d12c015", "EXPRESSES", "brain:2db76d12c015@cpu0"], ["genome:2db76d12c015", "PARENT_OF", "genome:813896674016"], ["brain:2db76d12c015@cpu0", "LIVES_IN", "body:cpu0"], ["brain:2db76d12c015@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:2db76d12c015@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:2db76d12c015@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:2db76d12c015@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:2db76d12c015@cpu0", "EVALUATED_BY", "eval:brain:2db76d12c015@cpu0:dev"], ["eval:brain:2db76d12c015@cpu0:dev", "ON_SUITE", "suite:dev"], ["genome:6e43c84f430d", "INHERITED_FROM", "brain:411b627d97da@cpu0"], ["genome:6e43c84f430d", "EXPRESSES", "brain:6e43c84f430d@cpu0"], ["brain:6e43c84f430d@cpu0", "LIVES_IN", "body:cpu0"], ["brain:6e43c84f430d@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:6e43c84f430d@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:6e43c84f430d@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:6e43c84f430d@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:6e43c84f430d@cpu0", "EVALUATED_BY", "eval:brain:6e43c84f430d@cpu0:dev"], ["eval:brain:6e43c84f430d@cpu0:dev", "ON_SUITE", "suite:dev"], ["genome:81f79bf7181f", "INHERITED_FROM", "brain:0bab847e1ca1@cpu0"], ["genome:81f79bf7181f", "EXPRESSES", "brain:81f79bf7181f@cpu0"], ["brain:81f79bf7181f@cpu0", "LIVES_IN", "body:cpu0"], ["brain:81f79bf7181f@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:81f79bf7181f@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:81f79bf7181f@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:81f79bf7181f@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:81f79bf7181f@cpu0", "SUPERSEDES", "brain:0bab847e1ca1@cpu0"], ["brain:81f79bf7181f@cpu0", "CHALLENGED", "brain:0bab847e1ca1@cpu0"], ["brain:81f79bf7181f@cpu0", "EVALUATED_BY", "eval:brain:81f79bf7181f@cpu0:dev"], ["brain:81f79bf7181f@cpu0", "EVALUATED_BY", "eval:brain:81f79bf7181f@cpu0:qroot-language"], ["eval:brain:81f79bf7181f@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:81f79bf7181f@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0004", "JUSTIFIED_BY", "eval:brain:0bab847e1ca1@cpu0:qroot-language"], ["decision:body:cpu0:0004", "CHOSE", "brain:81f79bf7181f@cpu0"], ["decision:body:cpu0:0004", "JUSTIFIED_BY", "eval:brain:81f79bf7181f@cpu0:dev"], ["decision:body:cpu0:0004", "JUSTIFIED_BY", "eval:brain:81f79bf7181f@cpu0:qroot-language"], ["genome:8b409e66a225", "INHERITED_FROM", "brain:0bab847e1ca1@cpu0"], ["genome:8b409e66a225", "EXPRESSES", "brain:8b409e66a225@cpu0"], ["genome:8b409e66a225", "PARENT_OF", "genome:bd876fbfcf49"], ["genome:8b409e66a225", "PARENT_OF", "genome:17d7cadad611"], ["genome:8b409e66a225", "PARENT_OF", "genome:2355e32f68e7"], ["brain:8b409e66a225@cpu0", "LIVES_IN", "body:cpu0"], ["brain:8b409e66a225@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:8b409e66a225@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:8b409e66a225@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:8b409e66a225@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:8b409e66a225@cpu0", "CHALLENGED", "brain:81f79bf7181f@cpu0"], ["brain:8b409e66a225@cpu0", "EVALUATED_BY", "eval:brain:8b409e66a225@cpu0:dev"], ["brain:8b409e66a225@cpu0", "EVALUATED_BY", "eval:brain:8b409e66a225@cpu0:qroot-language"], ["eval:brain:8b409e66a225@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:8b409e66a225@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0005", "JUSTIFIED_BY", "eval:brain:81f79bf7181f@cpu0:qroot-language"], ["decision:body:cpu0:0005", "KILLED", "brain:8b409e66a225@cpu0"], ["decision:body:cpu0:0005", "JUSTIFIED_BY", "eval:brain:8b409e66a225@cpu0:dev"], ["decision:body:cpu0:0005", "JUSTIFIED_BY", "eval:brain:8b409e66a225@cpu0:qroot-language"], ["genome:813896674016", "INHERITED_FROM", "brain:2db76d12c015@cpu0"], ["genome:813896674016", "EXPRESSES", "brain:813896674016@cpu0"], ["brain:813896674016@cpu0", "LIVES_IN", "body:cpu0"], ["brain:813896674016@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:813896674016@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:813896674016@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:813896674016@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:813896674016@cpu0", "EVALUATED_BY", "eval:brain:813896674016@cpu0:dev"], ["eval:brain:813896674016@cpu0:dev", "ON_SUITE", "suite:dev"], ["genome:bd876fbfcf49", "INHERITED_FROM", "brain:8b409e66a225@cpu0"], ["genome:bd876fbfcf49", "EXPRESSES", "brain:bd876fbfcf49@cpu0"], ["brain:bd876fbfcf49@cpu0", "LIVES_IN", "body:cpu0"], ["brain:bd876fbfcf49@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:bd876fbfcf49@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:bd876fbfcf49@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:bd876fbfcf49@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:bd876fbfcf49@cpu0", "SUPERSEDES", "brain:81f79bf7181f@cpu0"], ["brain:bd876fbfcf49@cpu0", "CHALLENGED", "brain:81f79bf7181f@cpu0"], ["brain:bd876fbfcf49@cpu0", "EVALUATED_BY", "eval:brain:bd876fbfcf49@cpu0:dev"], ["brain:bd876fbfcf49@cpu0", "EVALUATED_BY", "eval:brain:bd876fbfcf49@cpu0:qroot-language"], ["eval:brain:bd876fbfcf49@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:bd876fbfcf49@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0006", "JUSTIFIED_BY", "eval:brain:81f79bf7181f@cpu0:qroot-language"], ["decision:body:cpu0:0006", "CHOSE", "brain:bd876fbfcf49@cpu0"], ["decision:body:cpu0:0006", "JUSTIFIED_BY", "eval:brain:bd876fbfcf49@cpu0:dev"], ["decision:body:cpu0:0006", "JUSTIFIED_BY", "eval:brain:bd876fbfcf49@cpu0:qroot-language"], ["genome:17d7cadad611", "INHERITED_FROM", "brain:8b409e66a225@cpu0"], ["genome:17d7cadad611", "EXPRESSES", "brain:17d7cadad611@cpu0"], ["brain:17d7cadad611@cpu0", "LIVES_IN", "body:cpu0"], ["brain:17d7cadad611@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:17d7cadad611@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:17d7cadad611@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:17d7cadad611@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:17d7cadad611@cpu0", "SUPERSEDES", "brain:bd876fbfcf49@cpu0"], ["brain:17d7cadad611@cpu0", "CHALLENGED", "brain:bd876fbfcf49@cpu0"], ["brain:17d7cadad611@cpu0", "EVALUATED_BY", "eval:brain:17d7cadad611@cpu0:dev"], ["brain:17d7cadad611@cpu0", "EVALUATED_BY", "eval:brain:17d7cadad611@cpu0:qroot-language"], ["eval:brain:17d7cadad611@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:17d7cadad611@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0007", "JUSTIFIED_BY", "eval:brain:bd876fbfcf49@cpu0:qroot-language"], ["decision:body:cpu0:0007", "CHOSE", "brain:17d7cadad611@cpu0"], ["decision:body:cpu0:0007", "JUSTIFIED_BY", "eval:brain:17d7cadad611@cpu0:dev"], ["decision:body:cpu0:0007", "JUSTIFIED_BY", "eval:brain:17d7cadad611@cpu0:qroot-language"], ["genome:2355e32f68e7", "INHERITED_FROM", "brain:8b409e66a225@cpu0"], ["genome:2355e32f68e7", "EXPRESSES", "brain:2355e32f68e7@cpu0"], ["brain:2355e32f68e7@cpu0", "LIVES_IN", "body:cpu0"], ["brain:2355e32f68e7@cpu0", "TRAINED_ON", "body:cpu0"], ["brain:2355e32f68e7@cpu0", "SHAPED_BY", "trait:body:cpu0:usable_memory"], ["brain:2355e32f68e7@cpu0", "SHAPED_BY", "trait:body:cpu0:format_fp32"], ["brain:2355e32f68e7@cpu0", "FED_BY", "dataset:mlg-corpus"], ["brain:2355e32f68e7@cpu0", "SUPERSEDES", "brain:17d7cadad611@cpu0"], ["brain:2355e32f68e7@cpu0", "CHALLENGED", "brain:17d7cadad611@cpu0"], ["brain:2355e32f68e7@cpu0", "EVALUATED_BY", "eval:brain:2355e32f68e7@cpu0:dev"], ["brain:2355e32f68e7@cpu0", "EVALUATED_BY", "eval:brain:2355e32f68e7@cpu0:qroot-language"], ["eval:brain:2355e32f68e7@cpu0:dev", "ON_SUITE", "suite:dev"], ["eval:brain:2355e32f68e7@cpu0:qroot-language", "ON_SUITE", "suite:qroot-language"], ["decision:body:cpu0:0008", "JUSTIFIED_BY", "eval:brain:17d7cadad611@cpu0:qroot-language"], ["decision:body:cpu0:0008", "CHOSE", "brain:2355e32f68e7@cpu0"], ["decision:body:cpu0:0008", "JUSTIFIED_BY", "eval:brain:2355e32f68e7@cpu0:dev"], ["decision:body:cpu0:0008", "JUSTIFIED_BY", "eval:brain:2355e32f68e7@cpu0:qroot-language"]]};
+  function go() { mlgMind("mind23053a62", data, 34.0, 0, null); }
+  if (window.d3 && window.d3.forceSimulation) go();
+  else { var s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"; s.onload = go; document.head.appendChild(s); }
+})();
+</script>
+<div class="note">real FalkorDB graph of an MLG evolution run, replayed in the order the MLG wrote it<br>
+hover a node · drag · scroll to zoom ·
+<a href="https://github.com/math741/mlg-graphhacks">source and A100 results</a></div>
+</html>

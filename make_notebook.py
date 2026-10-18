@@ -133,6 +133,16 @@ print("\\n".join(explain.why_champion(sub, body.id)))"""),
 ch = furnace.champion
 for q in ["U: o que é a mlg\\nM:", "U: o que você faz quando a temperatura sobe?\\nM:"] if ch else []:
     print(brain.generate(ch["model"], ch["g"], q, body.device), "\\n")"""),
+    code("""# Talk to the champion. Every COMMIT was saved to champions/*.pt, so it survives the session
+# (download it from the Files panel; brain.load_brain(path) brings it back anywhere).
+# It is a small byte-level brain trained for minutes: expect the MLG's voice, not a chatbot.
+print("saved champions:", sorted(os.listdir("champions")) if os.path.isdir("champions") else [])
+if ch and not QUICK:
+    while True:
+        q = input("you (empty to stop): ")
+        if not q.strip():
+            break
+        print("MLG:", brain.reply(ch["model"], ch["g"], q, body.device), "\\n")"""),
     code("""# Inheritance in the graph: which brains carry whose mind?
 for child, mode, parent, bpb in sub.q('''
     MATCH (g:Genome)-[r:INHERITED_FROM]->(p:Brain), (g)-[:EXPRESSES]->(b:Brain)

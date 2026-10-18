@@ -2,6 +2,30 @@
 
 **Graph Hacks by FalkorDB × WeMakeDevs · Track: Agent Memory & Coordination**
 
+**[▶ Live mind, one click](https://math741.github.io/mlg-graphhacks/)** ·
+**[Demo video](docs/MLG-GraphHacks-demo.mp4)** ·
+**[Notebook](MLG_A100.ipynb)** ·
+**[Full A100 run log](docs/a100-run.log)**
+
+![The living mind: the MLG's FalkorDB graph replayed as it was written](docs/living-mind.jpg)
+
+## Results from a real run (Colab, NVIDIA A100-SXM4-80GB, 58 minutes)
+
+| | |
+|---|---|
+| Body discovered without being told | 72.0 GiB writable (MEASURED), cache cliff at ~28.7 MiB found by 4 bisections, bf16 258 TFLOPS, fp16 overflow envelope, 113 W at rest |
+| Evolution | 6 generations, 48 genomes, 46 brains trained, 2 giants killed before running (132 GiB and 79 GiB predicted) |
+| Frozen Q root, committed champion | **1.904 → 1.686 → 1.667 bits/byte (−12.4%)** |
+| Champion `b3119e` | **1.87M parameters, 2.9× smaller than the ancestor**, pruned from 4 experts to 1 in fp16, carrying 300 s of inherited training |
+| Refusals | **9 ROLLBACKs**: brains that looked better on dev (best 1.474 bpb) and were refused by the frozen Q root |
+| Self-discovery | *"15 brains more than twice the champion's size did worse. The wall is the data, not the body."* |
+
+Every line is in [`docs/a100-run.log`](docs/a100-run.log), copied from the notebook output.
+
+| Awakening | Evolution on the A100 | Nothing promoted by faith |
+|---|---|---|
+| ![awakening](docs/awakening.jpg) | ![A100 evolution](docs/a100-evolution.jpg) | ![rollback](docs/rollback.jpg) |
+
 Today, AI is a fixed architecture someone chose, scaled up until the hardware gives out. The
 knowledge sits hidden in weights, and nobody can ask it *why*.
 
@@ -66,8 +90,13 @@ level** that is never mixed: `REPORTED` (the driver says so), `MEASURED` (the ML
 
 ## Run it
 
+**Just look:** the [live mind](https://math741.github.io/mlg-graphhacks/) replays a real FalkorDB
+graph of an evolution run in your browser (hover, drag, zoom). No GPU needed.
+
 **Colab (recommended):** open [`MLG_A100.ipynb`](MLG_A100.ipynb) in Colab, choose an A100 runtime
 and run all cells (about an hour at full budget; set `FEED_MB = 0` to skip the Wikipedia download).
+`viz.live(sub)` opens a tab that animates the evolution as the MLG writes it to FalkorDB, every
+COMMIT is saved to `champions/*.pt`, and the notebook lets you talk to the champion.
 FalkorDB runs embedded (FalkorDBLite) with nothing else to install. For FalkorDB Cloud or Docker,
 set `FALKORDB_HOST`, `FALKORDB_PORT`, `FALKORDB_USERNAME` and `FALKORDB_PASSWORD`.
 

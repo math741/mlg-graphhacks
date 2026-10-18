@@ -7,6 +7,7 @@ promotion gate, so the search never grades its own homework (XIV).
 """
 import gc
 import math
+import os
 import random
 import time
 
@@ -38,6 +39,7 @@ class Furnace:
         self.states = {}  # genome -> (dev bpb, weights): the best brains, for inheritance
         self.keep = 4
         self.lineage = {}  # genome -> (seconds trained by it and its ancestors, inherited generations)
+        self.save_dir = os.environ.get("MLG_CHAMPIONS", "champions")  # every COMMIT is saved here
         self._suites()
 
     # ---- frozen rulers -------------------------------------------------
@@ -229,6 +231,12 @@ class Furnace:
             row["model"] = None
             return
         row["decision"] = did
+        # a committed brain is never lost: its weights go to disk with its genome
+        os.makedirs(self.save_dir, exist_ok=True)
+        path = os.path.join(self.save_dir, bid.replace(":", "_").replace("@", "_") + ".pt")
+        torch.save({"genome": g, "state": B.snapshot(model), "brain": bid, "q_language": row["q"]}, path)
+        self.sub.obj("Brain", bid, origin="furnace.commit", epistemic="TESTED", checkpoint=path)
+        row["checkpoint"] = path
         if champ is not None:
             champ["model"] = None
         self.champion = row
